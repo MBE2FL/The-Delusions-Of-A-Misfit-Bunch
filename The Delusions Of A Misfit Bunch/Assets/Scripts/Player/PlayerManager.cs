@@ -23,19 +23,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     public GameObject _playerUIPrefab;
 
-
-
-    private GameObject[] bulletBank = new GameObject[10];
-    [SerializeField]
-    private GameObject bullet;
-    [SerializeField]
-    private GameObject bulletSpawnPoint;
-
-    private float shootTimer = 0.0f;
-    private float bulletLifeTimer = 5.0f;
-    private bool shotFired = false;
-
-
     public float Health
     {
         get
@@ -54,23 +41,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             _beams.SetActive(false);
         }
-
-        if(!bullet)
-        {
-            Debug.LogError("there is no bullet prefab");
-        }
-        else
-        {
-            for(int i = 0; i < bulletBank.Length; i++)
-            {
-                bulletBank[i] = Instantiate(bullet);
-                //bulletBank[i].transform.parent = bulletSpawnPoint.transform.parent;
-                bulletBank[i].transform.position = bulletSpawnPoint.transform.position;
-                DontDestroyOnLoad(bulletBank[i]);
-                bulletBank[i].SetActive(false);
-            }
-        }
-
 
         if (photonView.IsMine)
         {
@@ -138,60 +108,28 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
         if (_beams && _isFiring != _beams.activeInHierarchy)
         {
-           // _beams.SetActive(_isFiring);
+            _beams.SetActive(_isFiring);
         }
-
-        shootTimer += Time.deltaTime;
-
-        //this is for activating the bullet and firing if there is any in the bullet bank
-        if(_isFiring && shootTimer >= 0.5f)
-        {
-            for(int i = 0; i < bulletBank.Length; i++)
-            {
-                if(!bulletBank[i].activeInHierarchy)
-                {
-                    shotFired = true;
-                    bulletBank[i].SetActive(true);
-                    bulletBank[i].transform.position = bulletSpawnPoint.transform.position;
-                    bulletBank[i].GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.transform.GetComponentInParent<Transform>().forward * 500);
-                    shootTimer = 0.0f;
-                    break;
-                }
-            }
-        }
-
-        //this checks to see if the life span of the bullet has ended and will put it back in the bullet bank and reset the life span
-        for (int i = 0; i < bulletBank.Length; i++)
-        {
-            if (bulletBank[i].activeInHierarchy && bulletBank[i].GetComponent<Bullet>().getLifeTime() >= bulletLifeTimer)
-            {
-                bulletBank[i].GetComponent<Bullet>().resetLifeTime();
-                bulletBank[i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f,0.0f,0.0f);
-                bulletBank[i].transform.position = bulletSpawnPoint.transform.position;
-                bulletBank[i].SetActive(false);
-            }
-        }
-
     }
 
     void processInputs()
     {
-        Mouse mouse = Mouse.current;
+        //Mouse mouse = Mouse.current;
 
-        if (mouse.leftButton.wasPressedThisFrame)
-        {
-            if (!_isFiring)
-            {
-                _isFiring = true;
-            }
-        }
-        if (mouse.leftButton.wasReleasedThisFrame)
-        {
-            if (_isFiring)
-            {
-                _isFiring = false;
-            }
-        }
+        //if (mouse.leftButton.wasPressedThisFrame)
+        //{
+            //if (!_isFiring)
+            //{
+                //_isFiring = true;
+            //}
+        //}
+        //if (mouse.leftButton.wasReleasedThisFrame)
+        //{
+            //if (_isFiring)
+            //{
+                //_isFiring = false;
+            //}
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -206,47 +144,38 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             return;
         }
 
-        //if the player is hit by a bullet then it will reduce health
-        if(other.tag == "Bullet")
-        {
-            _health -= 0.1f;
-            return;
-        }
-
         _health -= 0.1f;
         Debug.Log(PhotonNetwork.NickName + " Health: " + _health);
     }
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (!photonView.IsMine)
-    //    {
-    //        return;
-    //    }
-    //
-    //    if (!other.name.Contains("Beam"))
-    //    {
-    //        return;
-    //    }
-    //
-    //    _health -= 0.1f * Time.deltaTime;
-    //    Debug.Log(PhotonNetwork.NickName + " Health: " + _health);
-    //}
+    private void OnTriggerStay(Collider other)
+    {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
+    
+        if (!other.name.Contains("Beam"))
+        {
+            return;
+        }
+    
+        _health -= 0.1f * Time.deltaTime;
+        Debug.Log(PhotonNetwork.NickName + " Health: " + _health);
+    }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
             // We own this player: send the others our data.
-            //stream.SendNext(_isFiring);
-            stream.SendNext(shotFired);
+            stream.SendNext(_isFiring);
             stream.SendNext(_health);
         }
         else
         {
             // Network player, recieve data.
-            //_isFiring = (bool)stream.ReceiveNext();
-            shotFired = (bool)stream.ReceiveNext();
+            _isFiring = (bool)stream.ReceiveNext();
             _health = (float)stream.ReceiveNext();
         }
     }

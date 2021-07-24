@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 9211086031120164902}
   - component: {fileID: 5893706718195204195}
   - component: {fileID: 2716821483017741774}
+  - component: {fileID: -6506931095149149746}
   m_Layer: 0
   m_Name: My Robot Kyle
   m_TagString: Untagged
@@ -760,8 +761,6 @@ MonoBehaviour:
   _beams: {fileID: 1633095538}
   _health: 1
   _playerUIPrefab: {fileID: 9058210099522116478, guid: 877c054a93c9082418ce6d26da1b7171, type: 3}
-  bullet: {fileID: 9114937285327467481, guid: 8745f735f00df2f42b4c813f8ffe56c4, type: 3}
-  bulletSpawnPoint: {fileID: 9201744658223811137}
 --- !u!114 &5893706718195204195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +807,21 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+--- !u!114 &-6506931095149149746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834136231699607702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89494b31b82060e4793ffa26f82e41c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photonView: {fileID: 782096581023586067}
+  bullet: {fileID: 9114937285327467481, guid: 8745f735f00df2f42b4c813f8ffe56c4, type: 3}
+  bulletSpawnPoint: {fileID: 9201744658223811137}
 --- !u!1 &2834136231699607704
 GameObject:
   m_ObjectHideFlags: 0
