@@ -6,19 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Networking/Network Test Scene.unity
+    path: Assets/Scenes/Main Menu.unity
+    guid: a8365a39b23c54e478bd0b047274ee40
+  - enabled: 1
+    path: Assets/Scenes/Networking/Room.unity
+    guid: 96e979c7303f9254d9680b410cd6cd84
+  - enabled: 1
+    path: Assets/Scenes/Networking/Photon Tutorial/Network Test Scene.unity
     guid: 6e7dd38cc6e240648a311c5f61f11761
   - enabled: 1
-    path: Assets/Scenes/Networking/Room for 1.unity
+    path: Assets/Scenes/Networking/Photon Tutorial/Room for 1.unity
     guid: d1babdadbb1ec01428c4df2f23419655
   - enabled: 1
-    path: Assets/Scenes/Networking/Room for 2.unity
+    path: Assets/Scenes/Networking/Photon Tutorial/Room for 2.unity
     guid: d9bf34d3bd458304f97628dc496983cc
   - enabled: 1
-    path: Assets/Scenes/Networking/Room for 3.unity
+    path: Assets/Scenes/Networking/Photon Tutorial/Room for 3.unity
     guid: b7044214d8446a045a32b2bb6ebeea42
   - enabled: 1
-    path: Assets/Scenes/Networking/Room for 4.unity
+    path: Assets/Scenes/Networking/Photon Tutorial/Room for 4.unity
     guid: cf6ef55be0fe1d84a887c7e354910b7b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8c59c5544fadc2941bf434f5ae89b827, type: 2}
