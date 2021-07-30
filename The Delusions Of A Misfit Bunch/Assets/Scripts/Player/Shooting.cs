@@ -34,7 +34,7 @@ public class Shooting : MonoBehaviour
             {
                 bulletBank[i] = Instantiate(bullet);
                 bulletBank[i].transform.position = bulletSpawnPoint.transform.position;
-                DontDestroyOnLoad(bulletBank[i]);
+                //DontDestroyOnLoad(bulletBank[i]);
                 bulletBank[i].SetActive(false);
             }
         }
@@ -58,11 +58,6 @@ public class Shooting : MonoBehaviour
                 if (!bulletBank[i].activeInHierarchy)
                 {
                     photonView.RPC("ShotFiredCall", RpcTarget.All, i);//calls the rpc function for shooting the bullet
-
-                    //bulletBank[i].SetActive(true);
-                    //bulletBank[i].transform.position = bulletSpawnPoint.transform.position;//sets postion of the bullet
-                    //bulletBank[i].GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.transform.GetComponentInParent<Transform>().forward * 500);//adds force to the bullet
-                    //shootTimer = 0.0f;//resets the shoot timer
                     break;
                 }
             }
@@ -74,11 +69,6 @@ public class Shooting : MonoBehaviour
             if (bulletBank[i].activeInHierarchy && bulletBank[i].GetComponent<Bullet>().getLifeTime() >= bulletLifeTimer)
             {
                 photonView.RPC("ShotDeadCall", RpcTarget.All, i);//calls the rpc function to reset the bullet
-
-                //bulletBank[i].GetComponent<Bullet>().resetLifeTime();//resets bullet lifespan
-                //bulletBank[i].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);//resets bullet velocity
-                //bulletBank[i].transform.position = bulletSpawnPoint.transform.position;//restes position
-                //bulletBank[i].SetActive(false);
             }
         }
     }
@@ -106,7 +96,6 @@ public class Shooting : MonoBehaviour
     [PunRPC]
     void ShotFiredCall(int bulletNum)
     {
-        Debug.Log("Bonjour");
         bulletBank[bulletNum].SetActive(true);
         bulletBank[bulletNum].transform.position = bulletSpawnPoint.transform.position;//sets postion of the bullet
         bulletBank[bulletNum].GetComponent<Rigidbody>().AddForce(bulletSpawnPoint.transform.GetComponentInParent<Transform>().forward * 500);//adds force to the bullet
@@ -116,7 +105,6 @@ public class Shooting : MonoBehaviour
     [PunRPC]
     void ShotDeadCall(int bulletNum)
     {
-        Debug.Log("Goodbye");
         bulletBank[bulletNum].GetComponent<Bullet>().resetLifeTime();//resets bullet lifespan
         bulletBank[bulletNum].GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);//resets bullet velocity
         bulletBank[bulletNum].transform.position = bulletSpawnPoint.transform.position;//restes position

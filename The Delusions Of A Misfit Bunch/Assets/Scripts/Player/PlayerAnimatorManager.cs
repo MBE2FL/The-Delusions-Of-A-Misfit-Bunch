@@ -71,12 +71,13 @@ public class PlayerAnimatorManager : MonoBehaviourPun
         //float h = mouseDelta.x;
         //float v = mouseDelta.y;
 
-        if (v < 0.0f)
-        {
-            v = 0.0f;
-        }
-
-        _animator.SetFloat("Speed", (h * h) + (v * v));
+        //if (v < 0.0f)
+        //{
+        //    v = 0.0f;
+        //}
+  
+        //_animator.SetFloat("Speed", (h * h) + (v * v));
+        _animator.SetFloat("Speed", v);
         _animator.SetFloat("Direction", h, _directionDampTime, Time.deltaTime);
     }
 }

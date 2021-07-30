@@ -689,7 +689,7 @@ MonoBehaviour:
       m_Flags: 4
     - m_Name: negative
       m_Id: a7b074c7-9ae5-4708-a3ab-18bf55083946
-      m_Path: 
+      m_Path: <Keyboard>/s
       m_Interactions: 
       m_Processors: 
       m_Groups: 
