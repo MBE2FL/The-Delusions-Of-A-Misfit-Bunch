@@ -109,10 +109,11 @@ MonoBehaviour:
     supportDitheringCrossFade: 1
     supportTerrainHole: 0
     supportProbeVolume: 0
-    probeVolumeMemoryBudget: 1024
-    probeVolumeSHBands: 1
     supportRayTracing: 0
     supportedRayTracingMode: 3
+    probeVolumeSettings:
+      atlasResolution: 128
+      atlasOctahedralDepthResolution: 2048
     lightLoopSettings:
       cookieAtlasSize: 512
       cookieFormat: 74
@@ -135,8 +136,6 @@ MonoBehaviour:
       maxDecalsOnScreen: 512
       maxPlanarReflectionOnScreen: 16
       maxLightsPerClusterCell: 16
-      maxDensityVolumeSize: 32
-      maxDensityVolumesOnScreen: 64
     hdShadowInitParams:
       maxShadowRequests: 128
       directionalShadowsDepthBits: 16
@@ -185,7 +184,7 @@ MonoBehaviour:
       dynResType: 1
       upsampleFilter: 1
       forceResolution: 0
-      forcedPercentage: 100
+      forcedPercentage: 10
     lowresTransparentSettings:
       enabled: 1
       checkerboardDepthBuffer: 1
