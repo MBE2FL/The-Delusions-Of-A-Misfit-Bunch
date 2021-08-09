@@ -566,6 +566,8 @@ GameObject:
   - component: {fileID: 5893706718195204195}
   - component: {fileID: 2716821483017741774}
   - component: {fileID: -6506931095149149746}
+  - component: {fileID: 4535421536980805792}
+  - component: {fileID: 696521283336170760}
   m_Layer: 0
   m_Name: My Robot Kyle
   m_TagString: Untagged
@@ -598,7 +600,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2834136231699607702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
   m_Controller: {fileID: 9100000, guid: 1b222757b9e3844209748206173481c3, type: 2}
   m_CullingMode: 1
@@ -634,7 +636,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2834136231699607702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f149a656e0931e47b8e40b645cad3ec, type: 3}
   m_Name: 
@@ -711,7 +713,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2834136231699607702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd08475b23aa548b7b9d28397d430b32, type: 3}
   m_Name: 
@@ -822,6 +824,98 @@ MonoBehaviour:
   photonView: {fileID: 782096581023586067}
   bullet: {fileID: 9114937285327467481, guid: 8745f735f00df2f42b4c813f8ffe56c4, type: 3}
   bulletSpawnPoint: {fileID: 9201744658223811137}
+--- !u!114 &4535421536980805792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834136231699607702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624a229107bc43141bb546a93a22250c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _horizontalAxis:
+    m_Name: Horizontal Axis
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d4dda408-e7a9-4321-90c2-7cdfc562a3f3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 80d0926b-8c7d-44bc-a880-9219b3111768
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Horizontal Axis
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 231995cb-9140-40fe-9b5e-26f1290b6ee8
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Horizontal Axis
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: f8c8122c-05f2-4d5c-8744-c45be55ec63b
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Horizontal Axis
+      m_Flags: 8
+  _verticalAxis:
+    m_Name: Vertical Axis
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 98dfbde9-80cc-4f26-aea4-cc92694a4631
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 2ed7dd08-7eb2-4b8e-93f7-ae998b6069e9
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Vertical Axis
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: d9350b24-0bc3-42da-a5dc-43b563da8d6f
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Vertical Axis
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 25a85165-0c7a-4360-b8fb-04f7d5402e9c
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Vertical Axis
+      m_Flags: 8
+  velocity: 10
+--- !u!114 &696521283336170760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834136231699607702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7bc9869a985ec4b89fbcfddafc555e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  playerTransform: {fileID: 0}
+  followDist: {x: -10, y: 15, z: 0}
 --- !u!1 &2834136231699607704
 GameObject:
   m_ObjectHideFlags: 0
